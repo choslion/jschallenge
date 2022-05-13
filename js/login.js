@@ -1,7 +1,6 @@
 const lgnForm = document.getElementById("login-form");
 const lgnInput = document.querySelector("#login-form input");
 const greeting = document.querySelector("h1");
-// const lgnSubmit = document.querySelector("#login-form:last-child");
 
 const HIDENAME = "hide";
 const IDKEY = "ID";
