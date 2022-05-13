@@ -1,25 +1,20 @@
+const title = document.querySelector("body");
 const colors = ["#1abc9c", "#3498db", "#9b59b6", "#f39c12", "#e74c3c"];
-const title = document.querySelector("h2");
 
-const superEventHandler = {
-    enterfunc : ()=> {
-        title.innerText = "mouse enter!";
-        title.style.color = colors[0];
-      } ,
-    leavefunc : () => {
-        title.innerText = "mouse leave!";
-        title.style.color = colors[1];
-    } ,
-    resizefunc : function() {
-        title.innerText = "resized window!";
-        title.style.color = colors[2];
-    } ,
-    rightfunc : function () {
-        title.innerText = "clicked right button!";
-        title.style.color = colors[3];
-    }
-};
-title.addEventListener("mouseenter", superEventHandler.enterfunc);
-title.addEventListener("mouseleave", superEventHandler.leavefunc);
-window.addEventListener("contextmenu", superEventHandler.rightfunc);
-window.addEventListener("resize" , superEventHandler.resizefunc);
+function nicoResize() {
+    const windowWidth = window.innerWidth
+    if(windowWidth <= 300) {
+        title.style.backgroundColor = colors[0];
+    } else if (windowWidth > 300 && windowWidth<=600 ) {
+        title.style.backgroundColor = colors[1];
+    } else if (windowWidth > 600 && windowWidth <= 900) {
+        title.style.backgroundColor = colors[2];
+    } else if (windowWidth > 900 && windowWidth <= 1100) {
+        title.style.backgroundColor = colors[3];
+    } else if (windowWidth > 1100 && windowWidth <= 1300) {
+        title.style.backgroundColor = colors[4];
+    } else if (windowWidth > 1300) {
+        title.style.backgroundColor = colors[1];
+    } 
+
+window.addEventListener("resize" , nicoResize);
