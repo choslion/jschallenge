@@ -1,20 +1,26 @@
-const title = document.querySelector("body");
-const colors = ["#1abc9c", "#3498db", "#9b59b6", "#f39c12", "#e74c3c"];
+const form = document.querySelector("#randomForm");
+const choInput = document.querySelector("#choInput");
+const guessInput = document.querySelector("#guessInput");
+const playBtn = document.querySelector("#playBtn");
+const result = document.querySelector(".result");
 
-function nicoResize() {
-    const windowWidth = window.innerWidth
-    if(windowWidth <= 300) {
-        title.style.backgroundColor = colors[0];
-    } else if (windowWidth > 300 && windowWidth<=600 ) {
-        title.style.backgroundColor = colors[1];
-    } else if (windowWidth > 600 && windowWidth <= 900) {
-        title.style.backgroundColor = colors[2];
-    } else if (windowWidth > 900 && windowWidth <= 1100) {
-        title.style.backgroundColor = colors[3];
-    } else if (windowWidth > 1100 && windowWidth <= 1300) {
-        title.style.backgroundColor = colors[4];
-    } else if (windowWidth > 1300) {
-        title.style.backgroundColor = colors[1];
-    } 
+function excute(guessNum , maxInput){
 
-window.addEventListener("resize" , nicoResize);
+if(guessNum === parseInt(maxInput)){   
+    result.classList.remove("result");
+    const ranNum = Math.floor(Math.random()) * maxInput + 1;
+    result.innerHTML = `You chose ${guessNum} , the machine chose ${ranNum} \nYou Won!`;
+} else if (guessNum !== parseInt(maxInput)){ 
+    result.classList.remove("result");
+    result.innerHTML = `You chose ${guessNum} , the machine chose ${ranNum}\nYou lost!`;
+}
+}
+
+function formFunc(event) {
+    event.preventDefault();
+    const guessNum = guessInput.value;
+    const maxInput = choInput.value;
+    execute(guessNum , maxInput);
+}
+
+form.addEventListener("submit" , formFunc);
