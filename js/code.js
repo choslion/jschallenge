@@ -1,25 +1,18 @@
-const form = document.querySelector("#randomForm");
-const choInput = document.querySelector("#choInput");
-const guessInput = document.querySelector("#guessInput");
-const result = document.querySelector(".result");
+function nowDay(){
 
+    const christMas = document.querySelector("#christMas");
+    const dDate = new Date(2022,12,25);
+    const date = new Date();
+    const mas = dDate - date
+    const days = Math.floor(mas / (1000 * 60 * 60 * 24));
+    const hours = String(Math.floor((mas % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, "0");
+    const minutes = String(Math.floor((mas % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, "0");
+    const seconds = String(Math.floor((mas % (1000 * 60)) / 1000)).padStart(2, "0");
+    christMas.innerText = `${days}일 ${hours}시간 ${minutes}분 ${seconds}초 `;
 
-function execute(guessNum, ranNum){
-if(parseInt(guessNum) === ranNum){   
-    result.classList.remove("result");
-    result.innerHTML = `You chose ${guessNum} , the machine chose ${ranNum} \n You Won!`;
-} else { 
-    result.classList.remove("result");
-    result.innerHTML = `You chose : ${guessNum} , the machine chose : ${ranNum}\n\ You lost!`;
-}
 }
 
-function formFunc(event) {
-    event.preventDefault();
-    const maxInput = choInput.value;
-    const guessNum = guessInput.value;
-    const ranNum = Math.ceil(Math.random()* maxInput-0.5 );
-    execute(guessNum , ranNum);
-}
 
-form.addEventListener("submit" , formFunc);
+
+nowDay();
+setInterval(nowDay , 1000);
